@@ -1,5 +1,5 @@
 $scriptDir = $PSScriptRoot
-$memoDir = "$env:UserProfile\Desktop"
+$outputDir = "$env:UserProfile\Desktop"
 
 # タイトルを取得
 $title = Read-Host "Title: "
@@ -17,10 +17,10 @@ $data = $data | ForEach-Object { $_ -replace "%Date%","$timeDate" }         # �
 $data = $data | ForEach-Object { $_ -replace "%Start_Time%","$timeStart" }  # 開始時間を置き換え
 # ファイル名を定義
 $fileDir = "$timeStamp" + "_" + "$title"
-New-Item $memoDir\$fileDir -ItemType Directory > $null
+New-Item $outputDir\$fileDir -ItemType Directory > $null
 
 $fileName = "$timeStamp" + "_" + "$title" + ".md"
-$fullPath = "$memoDir\$fileDir\$fileName"
+$fullPath = "$outputDir\$fileDir\$fileName"
 $data | Out-File "$fullPath" -Encoding utf8
 
 # テキストエディタを起動
